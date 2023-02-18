@@ -1224,6 +1224,10 @@ pre[class*='language-'] {
   display: flex;
 }
 
+.table {
+  display: table;
+}
+
 .grid {
   display: -ms-grid;
   display: grid;
