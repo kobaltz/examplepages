@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Dave Kimura</title>
+    <title>Loofah Gem - CVE-2018-16468</title>
     <link href="/stylesheets/application.css" rel="stylesheet" />
     <script src="/javascripts/site.js"></script>
   </head>
@@ -80,13 +80,57 @@
     </div>
   </div>
 </header>
-      <h1>Articles tagged 'getting started'</h1>
 
+      <main>
+        <div class="sm:px-8 mt-16 lg:mt-32">
+          <div class="mx-auto max-w-7xl lg:px-8">
+            <div class="relative px-4 sm:px-8 lg:px-12">
+              <div class="mx-auto max-w-2xl lg:max-w-5xl">
+                <div class="xl:relative">
+                  <div class="mx-auto max-w-2xl">
+                    <a href="/articles.html" aria-label="Go back to articles" class="group mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:absolute lg:-left-5 lg:mb-0 lg:-mt-2 xl:-top-1.5 xl:left-0 xl:mt-0">
+                      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400">
+                        <path d="M7.25 11.25 3.75 8m0 0 3.5-3.25M3.75 8h8.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                    <article>
+                      <header class="flex flex-col">
+                        <h1 class="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+                          Loofah Gem - CVE-2018-16468
+                        </h1>
+                        <time datetime="2022-09-05" class="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500">
+                          <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
+                          <span class="ml-3">November  1, 2018</span>
+                        </time>
+                      </header>
+                      <div class="mt-8 prose dark:prose-invert">
+                        <p>The Loofah gem recently had a vulnerability reported which could potentially expose your application to a Cross Site Scripting attack.</p>
 
-<ul>
-    <li><a href="/articles/2017/01/11/how-i-screencast.html">How I Screencast</a> <span>Jan 11</span></li>
-</ul>
+<p>From <a href="https://nvd.nist.gov/vuln/detail/CVE-2018-16468">https://nvd.nist.gov/vuln/detail/CVE-2018-16468</a> it reads</p>
 
+<blockquote>
+  <p>In the Loofah gem for Ruby, through v2.2.2, unsanitized JavaScript may occur in sanitized output when a crafted SVG element is republished.</p>
+</blockquote>
+
+<p>Since the Ruby on Rails framework depends on <code>rails-html-sanitizer</code> and this depends on <code>loofah</code>, there is a likely chance that your application is affected too.</p>
+
+<p>To immediately address this issue, add this to your Gemfile.</p>
+
+<p><code>gem 'loofah', '~&gt; 2.2.3</code></p>
+
+<p>Then run</p>
+
+<p><code>bundle update loofah</code></p>
+
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
 
       <footer class="mt-32">
   <div class="sm:px-8">

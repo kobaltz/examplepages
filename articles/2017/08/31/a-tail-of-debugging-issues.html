@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Dave Kimura</title>
+    <title>A Tail of Debugging Issues</title>
     <link href="/stylesheets/application.css" rel="stylesheet" />
     <script src="/javascripts/site.js"></script>
   </head>
@@ -80,23 +80,102 @@
     </div>
   </div>
 </header>
-      <h1>Archive for
-    2017
-</h1>
 
+      <main>
+        <div class="sm:px-8 mt-16 lg:mt-32">
+          <div class="mx-auto max-w-7xl lg:px-8">
+            <div class="relative px-4 sm:px-8 lg:px-12">
+              <div class="mx-auto max-w-2xl lg:max-w-5xl">
+                <div class="xl:relative">
+                  <div class="mx-auto max-w-2xl">
+                    <a href="/articles.html" aria-label="Go back to articles" class="group mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:absolute lg:-left-5 lg:mb-0 lg:-mt-2 xl:-top-1.5 xl:left-0 xl:mt-0">
+                      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400">
+                        <path d="M7.25 11.25 3.75 8m0 0 3.5-3.25M3.75 8h8.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                    <article>
+                      <header class="flex flex-col">
+                        <h1 class="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+                          A Tail of Debugging Issues
+                        </h1>
+                        <time datetime="2022-09-05" class="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500">
+                          <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
+                          <span class="ml-3">August 31, 2017</span>
+                        </time>
+                      </header>
+                      <div class="mt-8 prose dark:prose-invert">
+                        <p>There have been many times when I've been debugging a complicated issue. More often than not, it was something crazy that I had done and it seemed like a good idea at the time. Whether it is a endless recursive loop or just a good ole bug in the code.</p>
 
-<ul>
-    <li><a href="/articles/2017/11/01/configuring-a-sentry-server-on-ubuntu-16.html">Configuring a Sentry Server on Ubuntu 16.04 LTS</a> <span>Nov  1</span></li>
-    <li><a href="/articles/2017/10/21/going-pro-on-drifting-ruby.html">Going Pro on Drifting Ruby</a> <span>Oct 21</span></li>
-    <li><a href="/articles/2017/08/31/a-tail-of-debugging-issues.html">A Tail of Debugging Issues</a> <span>Aug 31</span></li>
-    <li><a href="/articles/2017/07/22/hacking-content-for-to-create-a-simple-display-helper.html">Hacking content_for to create a simple display helper</a> <span>Jul 22</span></li>
-    <li><a href="/articles/2017/05/03/my-ruby-on-rails-development-environment.html">My Ruby on Rails Development Environment</a> <span>May  3</span></li>
-    <li><a href="/articles/2017/03/21/ruby-on-rails-5-1-0-deprecations.html">Ruby on Rails 5.1.0 Deprecations</a> <span>Mar 21</span></li>
-    <li><a href="/articles/2017/03/15/form-check-modified.html">Form Check Modified</a> <span>Mar 15</span></li>
-    <li><a href="/articles/2017/01/17/deleting-a-git-tag.html">Deleting A Git Tag</a> <span>Jan 17</span></li>
-    <li><a href="/articles/2017/01/11/how-i-screencast.html">How I Screencast</a> <span>Jan 11</span></li>
-</ul>
+<p>We all have our own ways of debugging and sometimes they're really efficient. However, other times, they're just familiar so that is our first weapon of choice. Just because something is familiar does not make it efficient. Sometimes branching out and trying something new may not be efficient due to the initial learning curve.</p>
 
+<p>However, this article will take two most likely familiar techniques and combine them into one simple, rememberable and powerful debugging technique. Some time ago, Aaron Patterson had written an article on <a href="http://tenderlovemaking.com/2016/02/05/i-am-a-puts-debuggerer.html">Puts Debugging</a> and it was a great read. Depending on our application and the complexity of the bug, this may not be enough.</p>
+
+<h1 id="tail">Tail</h1>
+
+<p>Within virtually every *nix system (Ubuntu, Centos, MacOS, etc.) there is a command that can show the last bits of a file. From your terminal within the application directory, you can run this command to see the last 100 lines of your file.</p>
+
+<pre><code>tail -100 log/development.log
+</code></pre>
+
+<p>Pretty cool huh? While you have your application running on a separate terminal, you can use this command to view the logs as they occur.</p>
+
+<pre><code>tail -f log/development.log
+</code></pre>
+
+<p>This is really powerful to see errors and other issues that may be happening. Any kind of successful request or failure will be logged here since within our <code>config/environments/development.rb</code> we have the following set by default.</p>
+
+<pre><code>config.log\_level = :debug
+</code></pre>
+
+<p>If you don't have this in there, it will be <code>:debug</code> by default.</p>
+
+<h1 id="grep">Grep</h1>
+
+<p>Grep is another popular command that I use all the time. It makes life so much easier when parsing a file to fine something specific. To keep things simple, I can <code>grep</code> a the output of a file and it will only show the relevant information.</p>
+
+<pre><code>cat Gemfile | grep source source 'https://rubygems.org'
+</code></pre>
+
+<table>
+  <tbody>
+    <tr>
+      <td>So we can call something like <code>cat Gemfile</code> which would display the entire contents of our Gemfile in the terminal. Combine this with a pipe (</td>
+      <td>) and <code>grep</code> with our search term and it returns the relevant results. Really cool!</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="tail--grep">Tail + Grep</h1>
+
+<p>While reading the development logs is fairly straight forward once you are familiar with the output and you know what you're looking for, it is still cumbersome if there is a LOT of information that is getting returned on a single request. Sometimes, it's not as simple as reading the relevant bits since there is a bunch of distracting information in between.</p>
+
+<p>So when I'm debugging an issue, whether it is a silly background job not running properly or some other nuance, I will throw something like this within my code to test.</p>
+
+<p><img src="/articles/2017/08/31/a-tail-of-debugging-issues/image-10.png" alt="" /></p>
+
+<p>This gives some separation of the logs and it also gives me a nice little wrapper to try and see what's going on. However, on complicated queries or requests, this may still get buried in the mix of the rest of the logs. Instead, we can simply do something like this within the relevant bit of code.</p>
+
+<pre><code>Rails.logger.info "DEBUG::some\_var::#{some\_var}
+</code></pre>
+
+<p>And within my terminal, I'll tail the logs and grep for <code>DEBUG</code> with a command like this.</p>
+
+<pre><code>tail -f log/development.log | grep DEBUG
+</code></pre>
+
+<p>Now, not only am I not bothered by the rest of the logs polluting my terminal, but I can clearly see when this bit of code has ran and also see the output without trying pick through a bunch of logs.</p>
+
+<p>Happy Debugging!</p>
+
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
 
       <footer class="mt-32">
   <div class="sm:px-8">

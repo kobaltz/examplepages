@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Dave Kimura</title>
+    <title>Let's Encrypt Wildcard Cert</title>
     <link href="/stylesheets/application.css" rel="stylesheet" />
     <script src="/javascripts/site.js"></script>
   </head>
@@ -80,23 +80,102 @@
     </div>
   </div>
 </header>
-      <h1>Archive for
-    2017
-</h1>
 
+      <main>
+        <div class="sm:px-8 mt-16 lg:mt-32">
+          <div class="mx-auto max-w-7xl lg:px-8">
+            <div class="relative px-4 sm:px-8 lg:px-12">
+              <div class="mx-auto max-w-2xl lg:max-w-5xl">
+                <div class="xl:relative">
+                  <div class="mx-auto max-w-2xl">
+                    <a href="/articles.html" aria-label="Go back to articles" class="group mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:absolute lg:-left-5 lg:mb-0 lg:-mt-2 xl:-top-1.5 xl:left-0 xl:mt-0">
+                      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400">
+                        <path d="M7.25 11.25 3.75 8m0 0 3.5-3.25M3.75 8h8.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                    <article>
+                      <header class="flex flex-col">
+                        <h1 class="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+                          Let's Encrypt Wildcard Cert
+                        </h1>
+                        <time datetime="2022-09-05" class="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500">
+                          <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
+                          <span class="ml-3">February 10, 2021</span>
+                        </time>
+                      </header>
+                      <div class="mt-8 prose dark:prose-invert">
+                        <p>I'm writing this more as documentation for myself as I have several domains which I often use as playgrounds for certain things. This could be a kubernetes environment or a docker cluster where I have several applications deployed, but don't want to set up an nginx site for each one of the apps that I deploy.</p>
 
-<ul>
-    <li><a href="/articles/2017/11/01/configuring-a-sentry-server-on-ubuntu-16.html">Configuring a Sentry Server on Ubuntu 16.04 LTS</a> <span>Nov  1</span></li>
-    <li><a href="/articles/2017/10/21/going-pro-on-drifting-ruby.html">Going Pro on Drifting Ruby</a> <span>Oct 21</span></li>
-    <li><a href="/articles/2017/08/31/a-tail-of-debugging-issues.html">A Tail of Debugging Issues</a> <span>Aug 31</span></li>
-    <li><a href="/articles/2017/07/22/hacking-content-for-to-create-a-simple-display-helper.html">Hacking content_for to create a simple display helper</a> <span>Jul 22</span></li>
-    <li><a href="/articles/2017/05/03/my-ruby-on-rails-development-environment.html">My Ruby on Rails Development Environment</a> <span>May  3</span></li>
-    <li><a href="/articles/2017/03/21/ruby-on-rails-5-1-0-deprecations.html">Ruby on Rails 5.1.0 Deprecations</a> <span>Mar 21</span></li>
-    <li><a href="/articles/2017/03/15/form-check-modified.html">Form Check Modified</a> <span>Mar 15</span></li>
-    <li><a href="/articles/2017/01/17/deleting-a-git-tag.html">Deleting A Git Tag</a> <span>Jan 17</span></li>
-    <li><a href="/articles/2017/01/11/how-i-screencast.html">How I Screencast</a> <span>Jan 11</span></li>
-</ul>
+<p>Recently, I found out about Portainer for managing a docker environment. Think of this as a kubernetes-lite. This isn't good for any kind of production use case, but does have some benefits for at home management of a local docker instance.</p>
 
+<p><img src="/articles/2021/02/10/lets-encrypt-wildcard-cert/PNG-image-90C9A493911C-1.png" alt="" /></p>
+
+<p>So in this illustration, we have a request coming in on 443. This request could be using the domain name <code>c1.mydomain.com</code> and there could be another request coming in from <code>c2.mydomain.com</code>.</p>
+
+<p>Previously, you would have a certificate for both subdomains and would need to set up the appropriate port forwarding for each subdomain to the appropriate server. This is a huge pain, so, instead, this is where a wildcard certificate can come in handy.</p>
+
+<p>In this particular scenario, I have an nginx proxy which will be used to route all of the traffic coming in to my network. This is handy because I can use this reverse proxy for SSL termination and also routing the traffic to various servers based on the domain name. This doesn't have to be a powerful server. You could even use a Raspberry Pi to route this traffic. Again, this is for a home server and not really production grade.</p>
+
+<p>You will need some prerequisites. And I also use CloudFlare's DNS for handling these wildcard domains. This is nice because certbot and cloudflare play pretty nicely to automatically verify the challenges via their API.</p>
+
+<pre><code>apt install certbot letsencrypt python3-certbot-dns-cloudflare
+</code></pre>
+
+<p>If you already have certbot and the necessary extensions installed, you can simply run this script to get a wildcard certificate.</p>
+
+<pre><code>sudo certbot certonly \
+     --cert-name mydomain.com \
+     --dns-cloudflare \
+     --dns-cloudflare-credentials /etc/letsencrypt/cloudflareapi.cfg \
+     --server https://acme-v02.api.letsencrypt.org/directory \
+     -d "*.mydomain.com" \
+     -d mydomain.com
+</code></pre>
+
+<p>So, now we can configure our nginx proxy to take any request from this domain and forward it over to my docker host.</p>
+
+<pre><code>server {
+  server_name *.mydomain.com;
+  server_name ~^(?&lt;subdomain&gt;.+)\.mydomain\.com$;
+  add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+  # proxy_next_upstream error timeout http_502;
+  location / {
+    proxy_pass http://DOCKER_HOST_IP_ADDRESS;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_buffering off;
+  }
+  listen 443 ssl;
+  ssl_certificate /etc/letsencrypt/live/mydomain.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/mydomain.com/privkey.pem;
+  include /etc/letsencrypt/options-ssl-nginx.conf;
+  ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+}
+
+server {
+  return 301 https://$host$request_uri;
+  listen 80 ;
+  listen [::]:80 ;
+  server_name *.mydomain.com;
+  server_name ~^(?&lt;subdomain&gt;.+)\.mydomain\.com$;
+}
+</code></pre>
+
+<p>In another blog article, I'll describe how I set up the Docker host to take in these requests from the nginx server.</p>
+
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
 
       <footer class="mt-32">
   <div class="sm:px-8">

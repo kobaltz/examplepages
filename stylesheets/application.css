@@ -1097,6 +1097,10 @@ pre[class*='language-'] {
   pointer-events: auto;
 }
 
+.static {
+  position: static;
+}
+
 .fixed {
   position: fixed;
 }
@@ -1223,6 +1227,10 @@ pre[class*='language-'] {
 .grid {
   display: -ms-grid;
   display: grid;
+}
+
+.contents {
+  display: contents;
 }
 
 .hidden {
@@ -1589,6 +1597,11 @@ pre[class*='language-'] {
   --tw-ring-color: rgb(24 24 27 / 0.05);
 }
 
+.filter {
+  -webkit-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+          filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 .backdrop-blur {
   --tw-backdrop-blur: blur(8px);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
@@ -1606,6 +1619,18 @@ pre[class*='language-'] {
           transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   -webkit-transition-duration: 150ms;
           transition-duration: 150ms;
+}
+
+.\[program\:sentry-cron\] {
+  program: sentry-cron;
+}
+
+.\[program\:sentry-web\] {
+  program: sentry-web;
+}
+
+.\[program\:sentry-worker\] {
+  program: sentry-worker;
 }
 
 @media (prefers-color-scheme: dark) {
