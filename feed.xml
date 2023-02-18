@@ -5,90 +5,694 @@
   <id>http://blog.url.com/articles</id>
   <link href="http://blog.url.com/articles"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2022-08-03T20:00:00-04:00</updated>
+  <updated>2017-05-02T20:00:00-04:00</updated>
   <author>
     <name>Blog Author</name>
   </author>
   <entry>
-    <title>Example Article Two</title>
-    <link rel="alternate" href="http://blog.url.com/articles/2022/08/04/example-two.html"/>
-    <id>http://blog.url.com/articles/2022/08/04/example-two.html</id>
-    <published>2022-08-03T20:00:00-04:00</published>
-    <updated>2023-02-17T00:32:23-05:00</updated>
+    <title>My Ruby on Rails Development Environment</title>
+    <link rel="alternate" href="http://blog.url.com/articles/2017/05/03/my-ruby-on-rails-development-environment.html"/>
+    <id>http://blog.url.com/articles/2017/05/03/my-ruby-on-rails-development-environment.html</id>
+    <published>2017-05-02T20:00:00-04:00</published>
+    <updated>2023-02-18T00:23:49-05:00</updated>
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;h2 id="this-is-the-example-article-title"&gt;This is the Example Article Title&lt;/h2&gt;
+    <content type="html">&lt;h1 id="forward"&gt;Forward&lt;/h1&gt;
 
-&lt;p&gt;&lt;strong&gt;Mindfulness Meditation:&lt;/strong&gt; A Guide to Improved Mental and Physical Health&lt;/p&gt;
+&lt;p&gt;Sometimes we have to configure a new development machine, whether it is for ourselves or a friend. We often find that there are some little pieces of our environment that we have forgotten about or have neglected to document. This is my documentation for a ready-to-work development environment for Ruby on Rails.&lt;/p&gt;
 
-&lt;p&gt;In today's fast-paced world, it can be easy to get caught up in the chaos of everyday life. Between work, family, and social obligations, it's easy to become overwhelmed and stressed. But what if there was a simple way to calm your mind and improve your overall health? That's where mindfulness meditation comes in.&lt;/p&gt;
+&lt;h1 id="about-me"&gt;About Me&lt;/h1&gt;
 
-&lt;h2 id="second-paragraph"&gt;Second Paragraph&lt;/h2&gt;
+&lt;p&gt;I have been working with Ruby on Rails for several years (since 2009) and have tried various other platforms; yet always circling back to Ruby on Rails. In my early days, I developed on Ubuntu as I did not have nor could I afford an Apple. I moved back to a Windows machine and used my host operating system for my main development environment. I kept an Ubuntu server within a Virtual Machine (Oracle VirtualBox) where I would SSH into the VM and run any tasks. I used a shared network folder via Samba to access my files. While my environment was very productive, it didn't have the true native feel of a development environment. I got an Apple, where I now spend my days developing Ruby applications.&lt;/p&gt;
 
-&lt;p&gt;Mindfulness meditation is a practice that has been around for thousands of years and has gained popularity in recent years due&lt;/p&gt;
+&lt;p&gt;I also run and maintain several pet projects; one of which is &lt;a href="https://www.driftingruby.com"&gt;Drifting Ruby&lt;/a&gt;. Some of the older apps that I use for different things around the house will need updating from time to time and might use an older version of Ruby with a different gem versions. So, having multiple Ruby versions and being able to switch them is very handy.&lt;/p&gt;
+
+&lt;p&gt;While it is not required, I do have several servers in my basement that I use as a testing/staging environment as well as a code repository for my projects. I also back up all of my work to an offsite location in the event of a destroyed home.&lt;/p&gt;
+
+&lt;p&gt;I come from a Systems Administrator background where I worked on Windows environments and Linux environments daily. As a Ruby on Rails developer, you should become comfortable with your Terminal as it can be a great tool.&lt;/p&gt;
+
+&lt;h1 id="about-this-guide"&gt;About This Guide&lt;/h1&gt;
+
+&lt;p&gt;By no means are the topics or recommendations covered in this guide best practices. Please let me know if you have found anything that I should be doing differently. However, I have found that these steps work great for my productivity and comfort. Not everything in this guide is Ruby on Rails specific, but the majority does touch on the installation and configuration of Ruby on Rails or the development environment that I enjoy working in. This guide is based on MacOS Sierra 10.12.4. It should work for previous versions. If you do find some issues, please let me know and I"ll see about updating this guide.&lt;/p&gt;
+
+&lt;h1 id="software"&gt;Software&lt;/h1&gt;
+
+&lt;p&gt;I have found that there are a few programs that makes life much easier whenever I setup a new development environment. Here are the basic applications that I feel is necessary for any new environment.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Homebrew&lt;/strong&gt; - The missing package manager for OSX
+&lt;strong&gt;iTerm2&lt;/strong&gt; - Alternative Terminal
+&lt;strong&gt;Spectacle&lt;/strong&gt; - Hotkeys for Window Movement and Placement. This is an absolute must have if you're using multiple monitors.
+&lt;strong&gt;SublimeText&lt;/strong&gt; - Preferred text editor
+&lt;strong&gt;Atom&lt;/strong&gt; or &lt;strong&gt;Visual Studio Code&lt;/strong&gt; are great free alternatives
+&lt;strong&gt;Google Chrome&lt;/strong&gt; - Browser of choice&lt;/p&gt;
+
+&lt;h2 id="homebrew"&gt;Homebrew&lt;/h2&gt;
+
+&lt;p&gt;Most developers that use an Apple probably rely on Homebrew as their quick goto for installing available packages. I'm no different. Let's get Homebrew installed. For the rest of the guide, most of our work is done in the Terminal. Where necessary, I'll indicate if you need to run something as `sudo` or not. If you do not see `sudo` prepended by any of the commands, it's safe to say that it is not required and/or recommended.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can then use Homebrew to install the rest of our software applications.&lt;/p&gt;
+
+&lt;h2 id="iterm2"&gt;iTerm2&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;brew cask install iterm2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="spectacle"&gt;Spectacle&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;brew cask install spectacle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="editor"&gt;Editor&lt;/h2&gt;
+
+&lt;h3 id="sublime-text"&gt;Sublime Text&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;brew cask install sublime-text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="atom"&gt;Atom&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;brew cask install atom
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="visual-studio-code"&gt;Visual Studio Code&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;brew cask install visual-studio-code
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="browser"&gt;Browser&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;brew cask install google-chrome
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="additional-packages"&gt;Additional Packages&lt;/h2&gt;
+
+&lt;p&gt;Now that we have our core development tools installed, we can start installing our services.&lt;/p&gt;
+
+&lt;h3 id="mysql"&gt;MySQL&lt;/h3&gt;
+
+&lt;p&gt;While most Ruby on Rails developers like using PostgreSQL for their database backend, I like and use MySQL. You can also use MariaDB if you wish which is very similar to MySQL.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can then start the MySQL service (and this will allow it to start whenever the computer is booted)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew services start mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We then need to set our password for the mysql  server. Be sure to remember this password. We will set our password through the secure installation script that gets shipped with mysql .&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mysql\_secure\_installation
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You will be asked a series of questions. Other than the first question and setting the root password, I'll answer yes to the rest.&lt;/p&gt;
+
+&lt;h3 id="apache-optional"&gt;Apache (Optional)&lt;/h3&gt;
+
+&lt;p&gt;phpMyAdmin is a handy and fairly light weight web interface to the MySQL server. However, it does rely on enabling Apache as well as PHP&lt;/p&gt;
+
+&lt;p&gt;By default, Apache  comes with OSX 10.12.4 (as well as other previous versions). To start the service, type the below in your terminal.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apachectl start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="php-optional"&gt;PHP (Optional)&lt;/h3&gt;
+
+&lt;p&gt;By default, the `PHP` module is included with OSX. However, it is not enabled. Edit the `httpd.conf` file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo nano /etc/apache2/httpd.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Look for the following line (Use `CTRL + W` to do a search within `nano`) and uncomment the line (remove the pound infront of it). You kids may call it a hashtag, but I'm still oldschool.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LoadModule php5\_module libexec/apache2/libphp5.so
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save the `httpd.conf` file. You can do this by typing `CTRL + X` within `nano`. It will prompt you to save, enter `y` and press enter (which will overwrite the existing file).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apachectl restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="phpmyadmin"&gt;PHPMyAdmin&lt;/h3&gt;
+
+&lt;p&gt;While `MySQL Workbench` is an absolutely great tool, I do not care for it. I prefer using `PHPMyAdmin` in my development environmen. I usually keep `PHPMyAdmin` opened in a different tab, but have recently found myself using it less and less.&lt;/p&gt;
+
+&lt;p&gt;Let's create a symlink to the `mysql.sock`.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo mkdir /var/mysql sudo
+ln -s /tmp/mysql.sock /var/mysql/mysql.sock
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Install `PHPMyAdmin`&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install homebrew/php/phpmyadmin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let's edit our `httpd.conf` again.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo nano /etc/apache2/httpd.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Another tool that I use very often is called `puma-dev`. This allows me to quickly access and spin up a Ruby on Rails application without having to manually start the web service. I have found that there is sometimes a conflict with the `puma-dev` service and `apache`. To avoid this entirely, I change the port that `apache` will listen on.&lt;/p&gt;
+
+&lt;p&gt;Look for the line `Listen 80` and change this to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Listen 8888
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At the very end of the `httpd.conf` file, copy and paste the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Alias /phpmyadmin /usr/local/share/phpmyadmin
+&amp;lt;Directory /usr/local/share/phpmyadmin/&amp;gt;
+  Options Indexes FollowSymLinks MultiViews
+  AllowOverride All
+  &amp;lt;IfModule mod_authz_core.c&amp;gt;
+    Require all granted
+  &amp;lt;/IfModule&amp;gt;
+  &amp;lt;IfModule !mod_authz_core.c&amp;gt;
+    Order allow,deny Allow from all
+  &amp;lt;/IfModule&amp;gt;
+&amp;lt;/Directory&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Restart `apache`&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apachectl restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="oh-my-zsh"&gt;Oh My Zsh&lt;/h3&gt;
+
+&lt;p&gt;If you prefer to have a fancier shell than `bash`, you can use `oh-my-zsh`. Purely a preference and an optional step. I will say though that the little `x` if changes that needs to be commited to version control and letting me know at a glance what branch I'm currently working on is a great tool to have if you spend a lot of time in the terminal.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You'll then need to provide your user password to change your terminal to ZSH.&lt;/p&gt;
+
+&lt;h3 id="rvm"&gt;RVM&lt;/h3&gt;
+
+&lt;p&gt;While OSX 10.12.4 does come with a Ruby interpreter, I do not like using my system ruby version. Instead, I use RVM as my Ruby Version Manager. Other ones like `rbenv` and `chruby` are fine. All three will act similar as far as keeping your ruby environments separate. At the time of this guide, `Ruby 2.4.1` is the latest MRI version. This is the version that we will be using.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install gpg
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+\curl -sSL https://get.rvm.io | bash -s stable
+source /Users/$(whoami)/.rvm/scripts/rvm
+rvm install 2.4.1
+gem update --system
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I often prefer to skip the installation of my gem documentation. I do this because it takes longer to download and install the gem. If I need to find the documentation of a gem, I'll usually look at the Github README of the gem or similar.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo 'gem: --no-document' &amp;gt;&amp;gt; ~/.gemrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let's install Ruby on Rails!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install rails
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="git"&gt;Git&lt;/h3&gt;
+
+&lt;p&gt;Personally, since I use a privately hosted Gitlab environment for my version control, I install and configure `git` on my development machines. However, this is purely optional if you have your own way/method of version control.&lt;/p&gt;
+
+&lt;p&gt;Be sure to change your `USERNAME` and `EMAILADDRESS` to your own information.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install git git config --global user.name "USERNAME" &amp;amp;&amp;amp; git config --global user.email "EMAILADDRESS"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="ssh-key"&gt;SSH Key&lt;/h3&gt;
+
+&lt;p&gt;In order to pull and push my code to my git repository, I authenticate my machine with the version control server via an authorized ssh key.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ssh-keygen -t rsa -C "EMAILADDRESS" &amp;amp;&amp;amp; cat ~/.ssh/id\_rsa.pub
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Copy and paste the SSH Key into your Version Control SSH Key section.&lt;/p&gt;
+
+&lt;h3 id="puma-dev"&gt;Puma-dev&lt;/h3&gt;
+
+&lt;p&gt;Puma-dev is an amazing tool. It will spin up web servers so that you can quickly access your Ruby on Rails applications. For example, if I have a project called `testapp` under `~/Rails/testapp`, I can use `puma-dev` to create a link to this application. Even on a fresh reboot, I can go to `http://testapp.dev` or &lt;code&gt;https://testapp.dev&lt;/code&gt; and it will launch my Ruby on Rails application. There is no need to go into your terminal to start the web service. You can also have multiple Ruby on Rails applications running at the same time with this. No more fuss with trying to find out which port is currently in use by another Ruby on Rails application.&lt;/p&gt;
+
+&lt;p&gt;For a video tutorial, check out &lt;a href="https://www.driftingruby.com/episodes/puma-dev-replacement-for-pow-and-prax"&gt;https://www.driftingruby.com/episodes/puma-dev-replacement-for-pow-and-prax&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;brew install puma/puma/puma-dev sudo puma-dev -setup puma-dev -install&lt;/p&gt;
+
+&lt;p&gt;`cd` into your Rails application and &lt;code&gt;ENTER&lt;/code&gt;. We will then create our link with &lt;code&gt;puma-dev&lt;/code&gt;. You can pass the optional &lt;code&gt;-n NAME&lt;/code&gt; to customize the &lt;code&gt;domain.dev&lt;/code&gt; that will be linked.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;puma-dev link -n testapp .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You now have a symlink created under `~/.puma-dev` where it references to your Ruby on Rails application. You can now visit the `YOURAPP.dev` in the browser and it should load up.&lt;/p&gt;
+
+&lt;h3 id="elasticsearch-optional"&gt;ElasticSearch (Optional)&lt;/h3&gt;
+
+&lt;p&gt;If you use ElasticSearch for full text searching, then here is the quick way to install it. ElasticSearch does require Java to be installed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew cask install java brew install elasticsearch brew services start elasticsearch
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="redis-optional"&gt;Redis (Optional)&lt;/h3&gt;
+
+&lt;p&gt;If you will be using &lt;code&gt;caching&lt;/code&gt;, &lt;code&gt;sidekiq&lt;/code&gt;, or &lt;code&gt;ActionCable&lt;/code&gt;, you will need Redis.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install redis
+brew services start redis
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="imagemagick-optional"&gt;ImageMagick (Optional)&lt;/h3&gt;
+
+&lt;p&gt;If you upload images and resize them, you'll most likely use `minimagick`. A dependency of these tools is `ImageMagick`&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install imagemagick
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="pulling-an-existing-project"&gt;Pulling an Existing Project&lt;/h1&gt;
+
+&lt;p&gt;I typically create a Rails folder in my home directory.&lt;/p&gt;
+
+&lt;p&gt;mkdir Rails cd Rails git clone &lt;remote repo=""&gt;&lt;/remote&gt;&lt;/p&gt;
+
+&lt;p&gt;Cloning a repository from within my `Rails` folder, will create a new folder with that repository's code.&lt;/p&gt;
+
+&lt;p&gt;From here, you're ready to go with your new development environment!&lt;/p&gt;
+
+&lt;h1 id="quick-notes-of-advice"&gt;Quick Notes of Advice&lt;/h1&gt;
+
+&lt;p&gt;Within my Google Chrome Bookmarks Bar, I keep a few different things. My First thing is a folder in the bookmarks that keeps a shortcut to my `puma-dev` URLs. I also keep a bookmark to `http://localhost:8888/phpmyadmin` to quickly access `PHPMyAdmin`.&lt;/p&gt;
 </content>
   </entry>
   <entry>
-    <title>Example Article TITLE</title>
-    <link rel="alternate" href="http://blog.url.com/articles/2022/08/03/example-article.html"/>
-    <id>http://blog.url.com/articles/2022/08/03/example-article.html</id>
-    <published>2022-08-02T20:00:00-04:00</published>
-    <updated>2023-02-17T00:32:20-05:00</updated>
+    <title>Ruby on Rails 5.1.0 Deprecations</title>
+    <link rel="alternate" href="http://blog.url.com/articles/2017/03/21/ruby-on-rails-5-1-0-deprecations.html"/>
+    <id>http://blog.url.com/articles/2017/03/21/ruby-on-rails-5-1-0-deprecations.html</id>
+    <published>2017-03-20T20:00:00-04:00</published>
+    <updated>2023-02-18T00:18:47-05:00</updated>
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;h2 id="this-is-the-example-article-title"&gt;This is the Example Article Title&lt;/h2&gt;
+    <content type="html">&lt;p&gt;With Ruby on Rails 5.1.0 RC1 out now, its official release is probably right around the corner. In efforts to clean up some of the code base, some methods have been deprecated. If you have been keeping your apps up to date with the latest stable releases, chances are that you have noticed these for some time coming as the via the deprecation notices in the application logs.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Mindfulness Meditation:&lt;/strong&gt; A Guide to Improved Mental and Physical Health&lt;/p&gt;
+&lt;p&gt;For easy searching purposes, I've parsed through the logs of all of the upcoming deprecations in Ruby on Rails 5.1.0. These were taken straight out of the CHANGELOGs.&lt;/p&gt;
 
-&lt;p&gt;In today's fast-paced world, it can be easy to get caught up in the chaos of everyday life. Between work, family, and social obligations, it's easy to become overwhelmed and stressed. But what if there was a simple way to calm your mind and improve your overall health? That's where mindfulness meditation comes in.&lt;/p&gt;
+&lt;p&gt;Check out &lt;a href="https://www.driftingruby.com/episodes/ruby-on-rails-5-1-0-changes-and-new-features"&gt;https://www.driftingruby.com/episodes/ruby-on-rails-5-1-0-changes-and-new-features&lt;/a&gt; for a screencast of some of the upcoming features in Ruby on Rails 5.1.0.&lt;/p&gt;
 
-&lt;h2 id="second-paragraph"&gt;Second Paragraph&lt;/h2&gt;
+&lt;h1 id="action-pack"&gt;Action Pack&lt;/h1&gt;
 
-&lt;p&gt;Mindfulness meditation is a practice that has been around for thousands of years and has gained popularity in recent years due to its proven health benefits. Research has shown that practicing mindfulness can help reduce stress, anxiety, and depression, improve sleep quality, and increase overall well-being.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/rails/rails/blob/v5.1.0.rc1/actionpack/CHANGELOG.md"&gt;https://github.com/rails/rails/blob/v5.1.0.rc1/actionpack/CHANGELOG.md&lt;/a&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;activate :blog do |blog|
-  # This will add a prefix to all links, template references and source paths
-  blog.name = "articles"
-  blog.prefix = "articles"
+&lt;h2 id="removed-deprecations"&gt;Removed Deprecations&lt;/h2&gt;
 
-  # blog.permalink = "{year}/{month}/{day}/{title}.html"
-  # Matcher for blog source files
-  # blog.sources = "{year}-{month}-{day}-{title}.html"
-  # blog.taglink = "tags/{tag}.html"
-  blog.layout = "article"
-  # blog.summary_separator = /()/
-  # blog.summary_length = 250
-  # blog.year_link = "{year}.html"
-  # blog.month_link = "{year}/{month}.html"
-  # blog.day_link = "{year}/{month}/{day}.html"
-  # blog.default_extension = ".markdown"
+&lt;ul&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;.to_prepare&lt;/code&gt;, &lt;code&gt;.to_cleanup&lt;/code&gt;, &lt;code&gt;.prepare!&lt;/code&gt; and &lt;code&gt;.cleanup!&lt;/code&gt; from &lt;code&gt;ActionDispatch::Reloader&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;ActionDispatch::Callbacks.to_prepare&lt;/code&gt; and &lt;code&gt;ActionDispatch::Callbacks.to_cleanup&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;ActionController::Metal.call&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;ActionController::Metal#env&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Remove deprecated support to non-keyword arguments in &lt;code&gt;ActionDispatch::IntegrationTest#process&lt;/code&gt;, &lt;code&gt;#get&lt;/code&gt;, &lt;code&gt;#post&lt;/code&gt;, &lt;code&gt;#patch&lt;/code&gt;, &lt;code&gt;#put&lt;/code&gt;, &lt;code&gt;#delete&lt;/code&gt;, and &lt;code&gt;#head&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;ActionDispatch::IntegrationTest#*_via_redirect&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;ActionDispatch::IntegrationTest#xml_http_request&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated support for passing &lt;code&gt;:path&lt;/code&gt; and route path as strings in &lt;code&gt;ActionDispatch::Routing::Mapper#match&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated support for passing path as &lt;code&gt;nil&lt;/code&gt; in &lt;code&gt;ActionDispatch::Routing::Mapper#match&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;cache_control&lt;/code&gt; argument from &lt;code&gt;ActionDispatch::Static#initialize&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated support to passing strings or symbols to the middleware stack.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;host&lt;/code&gt; and &lt;code&gt;port&lt;/code&gt; ssl options.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;const_error&lt;/code&gt; argument in &lt;code&gt;ActionDispatch::Session::SessionRestoreError#initialize&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;#original_exception&lt;/code&gt; in &lt;code&gt;ActionDispatch::Session::SessionRestoreError&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;ActionDispatch::ParamsParser&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;original_exception&lt;/code&gt; and &lt;code&gt;message&lt;/code&gt; arguments in&lt;code&gt;ActionDispatch::ParamsParser::ParseError#initialize&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;#original_exception&lt;/code&gt; in &lt;code&gt;ActionDispatch::ParamsParser::ParseError&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated access to mime types through constants.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated support to non-keyword arguments in &lt;code&gt;ActionController::TestCase#process&lt;/code&gt;, &lt;code&gt;#get&lt;/code&gt;, &lt;code&gt;#post&lt;/code&gt;, &lt;code&gt;#patch&lt;/code&gt;, &lt;code&gt;#put&lt;/code&gt;, &lt;code&gt;#delete&lt;/code&gt;, and &lt;code&gt;#head&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;xml_http_request&lt;/code&gt; and &lt;code&gt;xhr&lt;/code&gt; methods in &lt;code&gt;ActionController::TestCase&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated methods in &lt;code&gt;ActionController::Parameters&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated support to comparing a &lt;code&gt;ActionController::Parameters&lt;/code&gt; with a &lt;code&gt;Hash&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated support to &lt;code&gt;:text&lt;/code&gt; in &lt;code&gt;render&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated support to &lt;code&gt;:nothing&lt;/code&gt; in &lt;code&gt;render&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated support to &lt;code&gt;:back&lt;/code&gt; in &lt;code&gt;redirect_to&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated support to passing status as option &lt;code&gt;head&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated support to passing original exception to &lt;code&gt;ActionController::BadRequest&lt;/code&gt; and the &lt;code&gt;ActionController::BadRequest#original_exception&lt;/code&gt; method.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated methods &lt;code&gt;skip_action_callback&lt;/code&gt;, &lt;code&gt;skip_filter&lt;/code&gt;, &lt;code&gt;before_filter&lt;/code&gt;, &lt;code&gt;prepend_before_filter&lt;/code&gt;, &lt;code&gt;skip_before_filter&lt;/code&gt;, &lt;code&gt;append_before_filter&lt;/code&gt;, &lt;code&gt;around_filter&lt;/code&gt; &lt;code&gt;prepend_around_filter&lt;/code&gt;, &lt;code&gt;skip_around_filter&lt;/code&gt;, &lt;code&gt;append_around_filter&lt;/code&gt;, &lt;code&gt;after_filter&lt;/code&gt;, &lt;code&gt;prepend_after_filter&lt;/code&gt;, &lt;code&gt;skip_after_filter&lt;/code&gt; and &lt;code&gt;append_after_filter&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 
-  blog.tag_template = "tag.html"
-  blog.calendar_template = "calendar.html"
+&lt;h2 id="new-deprecations"&gt;New Deprecations&lt;/h2&gt;
 
-  # Enable pagination
-  # blog.paginate = true
-  # blog.per_page = 10
-  # blog.page_link = "page/{num}"
-end
+&lt;ul&gt;
+  &lt;li&gt;Deprecate &lt;code&gt;ActionDispatch::ParamsParser::ParseError&lt;/code&gt; in favor of&lt;code&gt;ActionDispatch::Http::Parameters::ParseError&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id="actionview"&gt;ActionView&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/rails/rails/blob/v5.1.0.rc1/actionview/CHANGELOG.md"&gt;https://github.com/rails/rails/blob/v5.1.0.rc1/actionview/CHANGELOG.md&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="removed-deprecations-1"&gt;Removed Deprecations&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Removed deprecated &lt;code&gt;#original_exception&lt;/code&gt; in &lt;code&gt;ActionView::Template::Error&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="new-deprecations-1"&gt;New Deprecations&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Deprecation: The Erubis handler will be removed in Rails 5.2, for the handful of folks using it directly.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id="activemodel"&gt;ActiveModel&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/rails/rails/blob/v5.1.0.rc1/activemodel/CHANGELOG.md"&gt;https://github.com/rails/rails/blob/v5.1.0.rc1/activemodel/CHANGELOG.md&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="removed-deprecations-2"&gt;Removed Deprecations&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Remove deprecated behavior that halts callbacks when the return is false.&lt;/li&gt;
+  &lt;li&gt;Remove unused &lt;code&gt;ActiveModel::TestCase&lt;/code&gt; class.&lt;/li&gt;
+  &lt;li&gt;Removed deprecated &lt;code&gt;:tokenizer&lt;/code&gt; in the length validator.&lt;/li&gt;
+  &lt;li&gt;Removed deprecated methods in &lt;code&gt;ActiveModel::Errors&lt;/code&gt;.&lt;code&gt;#get&lt;/code&gt;, &lt;code&gt;#set&lt;/code&gt;, &lt;code&gt;[]=&lt;/code&gt;, &lt;code&gt;add_on_empty&lt;/code&gt; and &lt;code&gt;add_on_blank&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id="activerecord"&gt;ActiveRecord&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/rails/rails/blob/v5.1.0.rc1/activerecord/CHANGELOG.md"&gt;https://github.com/rails/rails/blob/v5.1.0.rc1/activerecord/CHANGELOG.md&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="removed-deprecations-3"&gt;Removed Deprecations&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Remove deprecated behavior that halts callbacks when the return is false.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated tasks: &lt;code&gt;db:test:clone&lt;/code&gt;, &lt;code&gt;db:test:clone_schema&lt;/code&gt;, &lt;code&gt;db:test:clone_structure&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;#uniq&lt;/code&gt;, &lt;code&gt;#uniq!&lt;/code&gt;, and &lt;code&gt;#uniq_value&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;#insert_sql&lt;/code&gt;, &lt;code&gt;#update_sql&lt;/code&gt;, and &lt;code&gt;#delete_sql&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;#use_transactional_fixtures&lt;/code&gt; configuration.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;#raise_in_transactional_callbacks&lt;/code&gt; configuration.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;#load_schema_for&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated conditions parameter from &lt;code&gt;#destroy_all&lt;/code&gt; and &lt;code&gt;#delete_all&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated support to passing arguments to &lt;code&gt;#select&lt;/code&gt; when a block is provided.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated support to query using commas on LIMIT.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated support to passing a class as a value in a query.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;original_exception&lt;/code&gt; argument in &lt;code&gt;ActiveRecord::StatementInvalid#initialize&lt;/code&gt; and &lt;code&gt;ActiveRecord::StatementInvalid#original_exception&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;#tables&lt;/code&gt; and &lt;code&gt;#table_exists?&lt;/code&gt; return only tables and not views.All the deprecations on those methods were removed.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;name&lt;/code&gt; argument from &lt;code&gt;#tables&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated support to passing a column to &lt;code&gt;#quote&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated force reload argument in singular and collection association readers.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;activerecord.errors.messages.restrict_dependent_destroy.one&lt;/code&gt; and &lt;code&gt;activerecord.errors.messages.restrict_dependent_destroy.many&lt;/code&gt; i18n scopes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="new-deprecations-2"&gt;New Deprecations&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Deprecate &lt;code&gt;Migrator.schema_migrations_table_name&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Deprecate &lt;code&gt;supports_migrations?&lt;/code&gt; on connection adapters.&lt;/li&gt;
+  &lt;li&gt;Deprecate using &lt;code&gt;#quoted_id&lt;/code&gt; in quoting.&lt;/li&gt;
+  &lt;li&gt;Deprecate passing &lt;code&gt;default&lt;/code&gt; to &lt;code&gt;index_name_exists?&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Deprecate &lt;code&gt;supports_primary_key?&lt;/code&gt; on connection adapters since it's been long unused and unsupported.&lt;/li&gt;
+  &lt;li&gt;Deprecate locking records with unpersisted changes.&lt;/li&gt;
+  &lt;li&gt;Deprecate &lt;code&gt;ColumnDumper#migration_keys&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Deprecate &lt;code&gt;initialize_schema_migrations_table&lt;/code&gt; and &lt;code&gt;initialize_internal_metadata_table&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Deprecate passing a class to the &lt;code&gt;class_name&lt;/code&gt; because it eagerloads more classes than necessary and potentially creates circular dependencies.&lt;/li&gt;
+  &lt;li&gt;Deprecate passing &lt;code&gt;name&lt;/code&gt; to &lt;code&gt;indexes&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Deprecate passing arguments and block at the same time to &lt;code&gt;ActiveRecord::QueryMethods#select&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Deprecate &lt;code&gt;sanitize_conditions&lt;/code&gt;. Use &lt;code&gt;sanitize_sql&lt;/code&gt; instead.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id="activesupport"&gt;ActiveSupport&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/rails/rails/blob/v5.1.0.rc1/activesupport/CHANGELOG.md"&gt;https://github.com/rails/rails/blob/v5.1.0.rc1/activesupport/CHANGELOG.md&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="removed-deprecations-4"&gt;Removed Deprecations&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Remove deprecated behavior that halts callbacks when the return is false.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated class &lt;code&gt;ActiveSupport::Concurrency::Latch&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated separator argument from &lt;code&gt;parameterize&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated method &lt;code&gt;Numeric#to_formatted_s&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated method &lt;code&gt;alias_method_chain&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated constant &lt;code&gt;MissingSourceFile&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated methods &lt;code&gt;Module.qualified_const_defined?&lt;/code&gt;, &lt;code&gt;Module.qualified_const_get&lt;/code&gt; and &lt;code&gt;Module.qualified_const_set&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;:prefix&lt;/code&gt; option from &lt;code&gt;number_to_human_size&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated method &lt;code&gt;ActiveSupport::HashWithIndifferentAccess.new_from_hash_copying_default&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated file &lt;code&gt;active_support/core_ext/time/marshal.rb&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated file &lt;code&gt;active_support/core_ext/struct.rb&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated file &lt;code&gt;active_support/core_ext/module/method_transplanting.rb&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated method &lt;code&gt;Module.local_constants&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated file &lt;code&gt;active_support/core_ext/kernel/debugger.rb&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated method &lt;code&gt;ActiveSupport::Cache::Store#namespaced_key&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated method &lt;code&gt;ActiveSupport::Cache::Strategy::LocalCache::LocalStore#set_cache_value&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated method &lt;code&gt;ActiveSupport::Cache::MemCacheStore#escape_key&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated method &lt;code&gt;ActiveSupport::Cache::FileStore#key_file_path&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated arguments in &lt;code&gt;assert_nothing_raised&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="new-deprecations-3"&gt;New Deprecations&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Deprecate implicit coercion of &lt;code&gt;ActiveSupport::Duration&lt;/code&gt;Currently &lt;code&gt;ActiveSupport::Duration&lt;/code&gt; implicitly converts to a seconds value when used in a calculation except for the explicit examples of addition and subtraction where the duration is the receiver, e.g: » 2 * 1.day =&amp;gt; 172800&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This results in lots of confusion especially when using durations with dates because adding/subtracting a value from a date treats integers as a day and not a second, e.g:» Date.today =&amp;gt; Wed, 01 Mar 2017 » Date.today + 2 * 1.day =&amp;gt; Mon, 10 Apr 2490&lt;/p&gt;
+
+&lt;p&gt;To fix this we're implementing &lt;code&gt;coerce&lt;/code&gt; so that we can provide a deprecation warning with the intent of removing the implicit coercion in Rails 5.2, e.g:» 2 * 1.day DEPRECATION WARNING: Implicit coercion of ActiveSupport::Duration to a Numeric is deprecated and will raise a TypeError in Rails 5.2. =&amp;gt; 172800&lt;/p&gt;
+
+&lt;p&gt;In Rails 5.2 it will raise &lt;code&gt;TypeError&lt;/code&gt;, e.g:» 2 * 1.day TypeError: ActiveSupport::Duration can't be coerced into Integer&lt;/p&gt;
+
+&lt;p&gt;This is the same behavior as with other types in Ruby, e.g:» 2 * "foo" TypeError: String can't be coerced into Integer » "foo" * 2 =&amp;gt; "foofoo"&lt;/p&gt;
+
+&lt;p&gt;As part of this deprecation add &lt;code&gt;*&lt;/code&gt; and &lt;code&gt;/&lt;/code&gt; methods to &lt;code&gt;AS::Duration&lt;/code&gt; so that calculations that keep the duration as the receiver work correctly whether the final receiver is a &lt;code&gt;Date&lt;/code&gt; or &lt;code&gt;Time&lt;/code&gt;, e.g:» Date.today =&amp;gt; Wed, 01 Mar 2017 » Date.today + 1.day * 2 =&amp;gt; Fri, 03 Mar 2017&lt;/p&gt;
+
+&lt;p&gt;Fixes #27457.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Soft-deprecated the top-level &lt;code&gt;HashWithIndifferentAccess&lt;/code&gt; constant.&lt;code&gt;ActiveSupport::HashWithIndifferentAccess&lt;/code&gt; should be used instead.Fixes #28157.&lt;/li&gt;
+  &lt;li&gt;Deprecate &lt;code&gt;ActiveSupport.halt_callback_chains_on_return_false&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Deprecate passing string to &lt;code&gt;:if&lt;/code&gt; and &lt;code&gt;:unless&lt;/code&gt; conditional options on &lt;code&gt;set_callback&lt;/code&gt; and &lt;code&gt;skip_callback&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id="activejob"&gt;ActiveJob&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/rails/rails/blob/v5.1.0.rc1/activejob/CHANGELOG.md"&gt;https://github.com/rails/rails/blob/v5.1.0.rc1/activejob/CHANGELOG.md&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="removed-deprecations-5"&gt;Removed Deprecations&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Removed deprecated support to passing the adapter class to &lt;code&gt;.queue_adapter&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Removed deprecated &lt;code&gt;#original_exception&lt;/code&gt; in &lt;code&gt;ActiveJob::DeserializationError&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="new-deprecations-4"&gt;New Deprecations&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;None&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id="railsties"&gt;Railsties&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/rails/rails/blob/v5.1.0.rc1/railties/CHANGELOG.md"&gt;https://github.com/rails/rails/blob/v5.1.0.rc1/railties/CHANGELOG.md&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="removed-deprecations-6"&gt;Removed Deprecations&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;CONTROLLER&lt;/code&gt; environment variable for &lt;code&gt;routes&lt;/code&gt; task.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated tasks: &lt;code&gt;rails:update&lt;/code&gt;, &lt;code&gt;rails:template&lt;/code&gt;, &lt;code&gt;rails:template:copy&lt;/code&gt;, &lt;code&gt;rails:update:configs&lt;/code&gt; and &lt;code&gt;rails:update:bin&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated file &lt;code&gt;rails/rack/debugger&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;config.serve_static_files&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Remove deprecated &lt;code&gt;config.static_cache_control&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Removed jquery-rails from default stack, instead rails-ujs that is shipped with Action View is included as default UJS adapter.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="new-deprecations-5"&gt;New Deprecations&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;None&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Form Check Modified</title>
+    <link rel="alternate" href="http://blog.url.com/articles/2017/03/15/form-check-modified.html"/>
+    <id>http://blog.url.com/articles/2017/03/15/form-check-modified.html</id>
+    <published>2017-03-14T20:00:00-04:00</published>
+    <updated>2023-02-18T00:16:19-05:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Have you ever been on a website and filled out a form, only to accidentally refreshed or left the page without having saved your data. This can be a horrible experience to your users and they may leave your site without ever proceeding forward. Luckily, with a few sprinkles of some javascript, we can remedy this issue.&lt;/p&gt;
+
+&lt;p&gt;To get started, we'll create a new rails application and a user scaffold.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rails new form-check-modified
+cd form-check-modified
+rails g scaffold user first_name last_name email
+rake db:migrate
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;So, what exactly is mindfulness meditation? At its core, it is the practice of being present and fully engaged in the present moment. This can be achieved through focusing on your breath, body, or external surroundings. By doing so, you can learn to quiet your mind and tune out distractions, allowing you to be more present and engaged in your daily life.&lt;/p&gt;
+&lt;p&gt;We can then rename the &lt;code&gt;app/assets/javascripts/users.coffee&lt;/code&gt; to &lt;code&gt;users.js&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;If you're new to mindfulness meditation, it can seem overwhelming at first. But it's important to remember that it's a practice, and like any practice, it takes time and patience. Here are some tips to get started:&lt;/p&gt;
+&lt;p&gt;Paste in the following into this file.&lt;/p&gt;
 
-&lt;p&gt;Set aside time each day for your practice. Start with just a few minutes and gradually work your way up to longer sessions.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var msg, unsaved;
 
-&lt;p&gt;Find a quiet, comfortable place to practice. This could be a spare room, a park, or even just a quiet corner of your home.&lt;/p&gt;
+msg = "Changes you made may not be saved.";
 
-&lt;p&gt;Focus on your breath. This is one of the simplest and most effective ways to practice mindfulness. Simply focus on your breath as you inhale and exhale, allowing yourself to become fully present in the moment.&lt;/p&gt;
+unsaved = false;
 
-&lt;p&gt;Don't judge yourself. It's normal for your mind to wander during meditation. When this happens, simply acknowledge the thought and gently bring your focus back to your breath.&lt;/p&gt;
+$(document).on('change', 'form[role="check-modified"]:not([data-remote]) :input', function() {
+  return unsaved = true;
+});
 
-&lt;p&gt;By incorporating mindfulness meditation into your daily routine, you can experience improved mental and physical health, greater focus and productivity, and a greater sense of overall well-being. So why not give it a try today? Your mind and body will thank you.&lt;/p&gt;
+$(document).on('turbolinks:load', function() {
+  return unsaved = false;
+});
 
+$(document).on('submit', 'form[role="check-modified"]', function() {
+  unsaved = false;
+});
+
+$(window).bind('beforeunload', function() {
+  if (unsaved) {
+    return msg;
+  }
+});
+
+$(document).on('turbolinks:before-visit', function(event) {
+  if (unsaved &amp;amp;&amp;amp; !confirm(msg)) {
+    return event.preventDefault();
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice that we are selecting the form via `form[role="check-modified"]` which means that we will need to modify our user's form to include this role. This is a good way to prevent unwanted alerts on your application for things like search forms or other forms that will automatically save when fields are changed.&lt;/p&gt;
+
+&lt;p&gt;In our user's form, we can add &lt;code&gt;html: { role: 'check-modified' }&lt;/code&gt; which will trigger the javascript to check our forms for any unsaved changes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;%= form_for user, html: { role: 'check-modified' } do |f| %&amp;gt;
+  ...
+&amp;lt;% end %&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, once we refresh our page, whenever we modify the form and try to leave without saving, we get an alert!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/articles/2017/03/15/form-check-modified/image-4.png" alt="" /&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Deleting A Git Tag</title>
+    <link rel="alternate" href="http://blog.url.com/articles/2017/01/17/deleting-a-git-tag.html"/>
+    <id>http://blog.url.com/articles/2017/01/17/deleting-a-git-tag.html</id>
+    <published>2017-01-16T19:00:00-05:00</published>
+    <updated>2023-02-18T00:11:33-05:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;So, have you ever had a situation where you accidentally pushed the wrong tag to your remote repository and need to undo this?&lt;/p&gt;
+
+&lt;p&gt;You can first delete the tag on your local copy.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git tag -d TAGNAME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then push the tag to the remote repository.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git push origin :refs/tags/TAGNAME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create the tag again on your local copy&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git tag -a TAGNAME -m 'same tag name, new commit'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then push the new tag to your remote repository.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git push origin TAGNAME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Further Reading &lt;a href="https://git-scm.com/docs/git-tag"&gt;https://git-scm.com/docs/git-tag&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>How I Screencast</title>
+    <link rel="alternate" href="http://blog.url.com/articles/2017/01/11/how-i-screencast.html"/>
+    <id>http://blog.url.com/articles/2017/01/11/how-i-screencast.html</id>
+    <published>2017-01-10T19:00:00-05:00</published>
+    <updated>2023-02-18T00:12:04-05:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;So, I’ve been working on &lt;a href="https://www.driftingruby.com/"&gt;Drifting Ruby&lt;/a&gt; for over a year now. I have really enjoyed the learning process of what it takes to build and maintain a screencast site. It has been a bittersweet journey. I love recording and editing screencasts. However, it takes a commitment and patience.&lt;/p&gt;
+
+&lt;p&gt;There are so many different aspects with regards to the creation of a screencast.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://blog.driftingruby.com/how-i-screencast/#content-and-topic"&gt;content and topic&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://blog.driftingruby.com/how-i-screencast/#screen-capture"&gt;screen capture&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://blog.driftingruby.com/how-i-screencast/#audio-capture"&gt;audio capture&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://blog.driftingruby.com/how-i-screencast/#editing"&gt;editing&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://blog.driftingruby.com/how-i-screencast/#publishing"&gt;publishing&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://blog.driftingruby.com/how-i-screencast/#time"&gt;time&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I wanted to give some insight of my normal process and what it takes, at a high level, to start a new episode and take it all the way to production. In some ways, &lt;a href="https://www.driftingruby.com/"&gt;Drifting Ruby&lt;/a&gt; has been a great reference even for myself to go back and look up a topic and concept that I had recorded months earlier.&lt;/p&gt;
+
+&lt;h2 id="content-and-topic"&gt;Content and Topic&lt;/h2&gt;
+
+&lt;p&gt;This is one of the hardest and most time consuming parts of the process. A large number of episodes are derived from community involvment, inspiration and suggestions. However, other topics are based on what I currently reading or experimenting with.&lt;/p&gt;
+
+&lt;p&gt;There are several instances where I’ll dive into a topic that I’m wanting to learn more. For instance, the recent episodes with &lt;code&gt;sidekiq&lt;/code&gt; have been an awesome journey. I definitely make mistakes along the way and I’m greatful for when someone calls me out on these! Without your knowledge and ideas as a community, this site wouldn’t work.&lt;/p&gt;
+
+&lt;h2 id="screen-capture"&gt;Screen Capture&lt;/h2&gt;
+
+&lt;p&gt;I’m a big fan of &lt;a href="http://www.telestream.net/screenflow/"&gt;ScreenFlow&lt;/a&gt;. For the price, it is absolutely amazing. To some, the $99 price mark may be a deterrent. However, it has become an invaluable tool.&lt;/p&gt;
+
+&lt;p&gt;I will usually record in several segments and many times record the same segment multiple times. This definitely adds a lot of time to the process, but it pays off in the long run. I’ll typically record in a &lt;code&gt;1920x1080&lt;/code&gt; resolution and up the font size or zoom of the window I’m recording. This is partially for quality reasons as well as readability. I’ve played around with recording at &lt;code&gt;1280x720&lt;/code&gt;, but when upscaled, I noticed artifacts and pixelation.&lt;/p&gt;
+
+&lt;p&gt;One big thing that I’ve noticed is that I have difficulty typing as I am speaking, regardless if I am speaking what I’m typing. This is why you may see several instances where I’ve already entered the code and take the moments to explain them.&lt;/p&gt;
+
+&lt;h2 id="audio-capture"&gt;Audio Capture&lt;/h2&gt;
+
+&lt;p&gt;Audio has been quite an issue for me in the past.&lt;/p&gt;
+
+&lt;p&gt;My earlier screencasts were recorded on a Logitech G35 Gaming Headset. I thought that the audio quality was good at the time. However, I got some feedback from audiophile friends of mine and they suggested that my audio quality could be greatly improved.&lt;/p&gt;
+
+&lt;p&gt;I made the investment and got a Blue Yeti microphone. There was a tremendous difference! However, I contacted my older brother who does a lot of this stuff for a living. He explained the differences between a condenser mic and a dynamic mic. I had no idea what the differences were!&lt;/p&gt;
+
+&lt;p&gt;I currently am recording on an &lt;a href="http://www.shure.com/americas/products/microphones/sm/sm58-vocal-microphone"&gt;Shure SM58&lt;/a&gt; with a &lt;a href="https://peavey.com/products/index.cfm/item/666/118740"&gt;Peavey PV6 USB Mixer&lt;/a&gt;. It’s basically one of those microphones that you would see at a karaoke bar or a band using. The mixer is a fairly entry level and suits my needs. It’s fed directly into my computer via USB and shows up as an additional audio input source. I’ve noticed a tremendous difference in the quality of my audio captures.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/articles/2017/01/11/how-i-screencast/image-1.png" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I took it to the next level and started to pad my room with acoustic foam. The current videos you hear today are based on this new setup. Here is a clap test. The first two claps were with no room treatment and the last two claps are after room treatment. In both instances, I stood in the middle of the room and tried to keep as many variables as the same so that my results would not be skewed.&lt;/p&gt;
+
+&lt;p&gt;I am no means an audio expert. In fact, I have a really hard time telling the difference between different tones. However, I could tell a night and day difference with the room treatments. You’re missing out if you do any kind of audio recording and don’t have room treatments.&lt;/p&gt;
+
+&lt;h2 id="editing"&gt;Editing&lt;/h2&gt;
+
+&lt;p&gt;This is what a finished editing may look like. Over the course of 8 minutes and 17 seconds, I’ve had over 100 cuts and trims in the episode. Once in a while, and sometimes more often than not, I’ll clip something too early or not early enough. A few of my earlier episodes did not have any editing and was one solid recording. While this was much quicker and I was able to produce multiple videos a week, I wasn’t satisfied with the quality of the screencast.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/articles/2017/01/11/how-i-screencast/image-2.png" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the earlier videos, I had gotten feedback that screens switched too quickly and that there weren’t enough pauses between breaths. I’ve definitely toned it down a bit. Someone even told me that I had the most monotone voice and that a computer generated voice would have been more pleasing to listen to. While I might be tone deaf, I listen to feedback and always try to take it as constructively as possible. In the more recent videos, I’ve tried to put emphasis on important parts in an attempt to combat my &lt;strong&gt;monotone&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id="publishing"&gt;Publishing&lt;/h2&gt;
+
+&lt;p&gt;This is a time consuming portion of the process as well. It is definitely shorter than any other step in the process, but still takes 30 minutes or so.&lt;/p&gt;
+
+&lt;p&gt;I am extremely fortunate to live in a city where there is &lt;strong&gt;gigabit&lt;/strong&gt; competition. So, not only are the providers offering fast internet, it’s also reasonably priced. Uploading of videos takes no time at all!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/articles/2017/01/11/how-i-screencast/image-3.png" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I will usually go through and dissect the code written for the episode and post them under the show notes. I’ll include links to the various topics covered and come up with some sort of short description of the video. If an episode has a code changes to a template, I’ll upload the code base to the &lt;a href="https://github.com/driftingruby"&gt;Drifting Ruby Github Repository&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="time"&gt;Time&lt;/h2&gt;
+
+&lt;p&gt;The breakdown of my time usually looks like this.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;**Monday – Friday:&lt;/strong&gt;** &lt;strong&gt;About 1-2 hours&lt;/strong&gt; twice a week on researching topics and deciding on what to cover.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;**Saturday:&lt;/strong&gt;** &lt;strong&gt;About 4 hours&lt;/strong&gt; to build the template for the episode and any final touches on points of interest to cover.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;**Sunday:&lt;/strong&gt;** &lt;strong&gt;About 4-6 hours&lt;/strong&gt; to record, edit and publish the episode.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Overall, I will spend 10-14 hours a week on an episode. That is almost a part-time job! I also have three children, all under the age of three. This makes finding the time to research and prepare for an episode difficult and spontaneous. It also means that these activities will usually not start until after 9PM. Typically, after a Sunday evening recording/editing/publishing, it is after midnight.&lt;/p&gt;
 </content>
   </entry>
 </feed>

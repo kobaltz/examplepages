@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Dave Kimura</title>
-    <link href="/application.css" rel="stylesheet" />
+    <link href="/stylesheets/application.css" rel="stylesheet" />
     <script src="/javascripts/site.js"></script>
   </head>
   <body class="flex h-full flex-col bg-zinc-50 dark:bg-black">
@@ -97,25 +97,23 @@
                   <article class="md:grid md:grid-cols-4 md:items-baseline">
   <div class="md:col-span-3 group relative flex flex-col items-start">
     <h2 class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
-      <a href="/articles/2022/08/04/example-two.html">
+      <a href="/articles/2017/05/03/my-ruby-on-rails-development-environment.html">
         <span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
         <span class="relative z-10">
-          Example Article Two
+          My Ruby on Rails Development Environment
         </span>
       </a>
     </h2>
-    <time class="md:hidden relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500 pl-3.5" datetime="22-08-04">
+    <time class="md:hidden relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500 pl-3.5" datetime="17-05-03">
       <span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
         <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
       </span>
-      Aug  4
+      May  3
     </time>
     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-      <h2 id="this-is-the-example-article-title">This is the Example Article Title</h2>
+      <h1 id="forward">Forward</h1>
 
-<p><strong>Mindfulness Meditation:</strong> A Guide to Improved Mental and Physical Health</p>
-
-<p>In today's fast-paced world, it can be easy to get caught up in the chaos of everyday life. Between work, family, and social obligations, it...</p>
+<p>Sometimes we have to configure a new development machine, whether it is for ourselves or a friend. We often find that there are some little pieces of our environment that we have forgotten about or have neglected to document. This is my documentation...</p>
     </p>
     <div aria-hidden="true" class="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500">
       Read article
@@ -124,46 +122,26 @@
       </svg>
     </div>
   </div>
-  <time class="mt-1 hidden md:block relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500" datetime="22-08-04">August  4, 2022</time>
+  <time class="mt-1 hidden md:block relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500" datetime="17-05-03">May  3, 2017</time>
 </article>
                   <article class="md:grid md:grid-cols-4 md:items-baseline">
   <div class="md:col-span-3 group relative flex flex-col items-start">
     <h2 class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
-      <a href="/articles/2022/08/03/example-article.html">
+      <a href="/articles/2017/03/21/ruby-on-rails-5-1-0-deprecations.html">
         <span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
         <span class="relative z-10">
-          Example Article TITLE
+          Ruby on Rails 5.1.0 Deprecations
         </span>
       </a>
     </h2>
-    <time class="md:hidden relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500 pl-3.5" datetime="22-08-03">
+    <time class="md:hidden relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500 pl-3.5" datetime="17-03-21">
       <span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
         <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
       </span>
-      Aug  3
+      Mar 21
     </time>
     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-      <h2 id="this-is-the-example-article-title">This is the Example Article Title</h2>
-
-<p><strong>Mindfulness Meditation:</strong> A Guide to Improved Mental and Physical Health</p>
-
-<p>In today's fast-paced world, it can be easy to get caught up in the chaos of everyday life. Between work, family, and social obligations, it's easy to become overwhelmed and stressed. But what if there was a simple way to calm your mind and improve your overall health? That's where mindfulness meditation comes in.</p>
-
-<h2 id="second-paragraph">Second Paragraph</h2>
-
-<p>Mindfulness meditation is a practice that has been around for thousands of years and has gained popularity in recent years due to its proven health benefits. Research has shown that practicing mindfulness can help reduce stress, anxiety, and depression, improve sleep quality, and increase overall well-being.</p>
-
-<pre><code>activate :blog do |blog|
-  # This will add a prefix to all links, template references and source paths
-  blog.name = "articles"
-  blog.prefix = "articles"
-
-  # blog.permalink = "{year}/{month}/{day}/{title}.html"
-  # Matcher for blog source files
-  # blog.sources = "{year}-{month}-{day}-{title}.html"
-  # blog.taglink = "tags/{tag}.html"
-  blog.layout = "article"
-  # blog.summary_separator = /(</code></pre>
+      <p>With Ruby on Rails 5.1.0 RC1 out now, its official release is probably right around the corner. In efforts to clean up some of the code base, some methods have been deprecated. If you have been keeping your apps up to date with the latest stable releases...</p>
     </p>
     <div aria-hidden="true" class="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500">
       Read article
@@ -172,7 +150,100 @@
       </svg>
     </div>
   </div>
-  <time class="mt-1 hidden md:block relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500" datetime="22-08-03">August  3, 2022</time>
+  <time class="mt-1 hidden md:block relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500" datetime="17-03-21">March 21, 2017</time>
+</article>
+                  <article class="md:grid md:grid-cols-4 md:items-baseline">
+  <div class="md:col-span-3 group relative flex flex-col items-start">
+    <h2 class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+      <a href="/articles/2017/03/15/form-check-modified.html">
+        <span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
+        <span class="relative z-10">
+          Form Check Modified
+        </span>
+      </a>
+    </h2>
+    <time class="md:hidden relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500 pl-3.5" datetime="17-03-15">
+      <span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
+        <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
+      </span>
+      Mar 15
+    </time>
+    <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+      <p>Have you ever been on a website and filled out a form, only to accidentally refreshed or left the page without having saved your data. This can be a horrible experience to your users and they may leave your site without ever proceeding forward. Luckily...</p>
+    </p>
+    <div aria-hidden="true" class="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500">
+      Read article
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="ml-1 h-4 w-4 stroke-current">
+        <path d="M6.75 5.75 9.25 8l-2.5 2.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
+  </div>
+  <time class="mt-1 hidden md:block relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500" datetime="17-03-15">March 15, 2017</time>
+</article>
+                  <article class="md:grid md:grid-cols-4 md:items-baseline">
+  <div class="md:col-span-3 group relative flex flex-col items-start">
+    <h2 class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+      <a href="/articles/2017/01/17/deleting-a-git-tag.html">
+        <span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
+        <span class="relative z-10">
+          Deleting A Git Tag
+        </span>
+      </a>
+    </h2>
+    <time class="md:hidden relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500 pl-3.5" datetime="17-01-17">
+      <span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
+        <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
+      </span>
+      Jan 17
+    </time>
+    <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+      <p>So, have you ever had a situation where you accidentally pushed the wrong tag to your remote repository and need to undo this?</p>
+
+<p>You can first delete the tag on your local copy.</p>
+
+<pre><code>git tag -d TAGNAME
+</code></pre>
+
+<p>Then push the tag to the remote repository.</p>
+
+<pre><code>git...</code></pre>
+    </p>
+    <div aria-hidden="true" class="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500">
+      Read article
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="ml-1 h-4 w-4 stroke-current">
+        <path d="M6.75 5.75 9.25 8l-2.5 2.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
+  </div>
+  <time class="mt-1 hidden md:block relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500" datetime="17-01-17">January 17, 2017</time>
+</article>
+                  <article class="md:grid md:grid-cols-4 md:items-baseline">
+  <div class="md:col-span-3 group relative flex flex-col items-start">
+    <h2 class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+      <a href="/articles/2017/01/11/how-i-screencast.html">
+        <span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
+        <span class="relative z-10">
+          How I Screencast
+        </span>
+      </a>
+    </h2>
+    <time class="md:hidden relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500 pl-3.5" datetime="17-01-11">
+      <span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
+        <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
+      </span>
+      Jan 11
+    </time>
+    <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+      <p>So, I’ve been working on <a href="https://www.driftingruby.com/">Drifting Ruby</a> for over a year now. I have really enjoyed the learning process of what it takes to build and maintain a screencast site. It has been a bittersweet journey. I love recording and editing screencasts. However, it...</p>
+    </p>
+    <div aria-hidden="true" class="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500">
+      Read article
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="ml-1 h-4 w-4 stroke-current">
+        <path d="M6.75 5.75 9.25 8l-2.5 2.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
+  </div>
+  <time class="mt-1 hidden md:block relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500" datetime="17-01-11">January 11, 2017</time>
 </article>
               </div>
             </div>
